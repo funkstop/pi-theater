@@ -89,5 +89,12 @@
     "oneliner": "Ramanujan's series sums a sequence of carefully engineered terms involving factorials and powers of 26390, each term shrinking so rapidly that just the first term alone gives \u03c0 correct to six decimal places.\nA self-taught mathematician from a village with no electricity essentially handed the world a formula so absurdly efficient that computers still use it today \u2014 as if someone invented a jet engine while everyone else was still arguing about better shoes.",
     "filename": "vizzes/013_ramanujan's.html",
     "timestamp": "2026-03-15T04:42:02.609150"
+  },
+  {
+    "id": 14,
+    "method": "Bailey-Borwein-Plouffe (BBP) formula",
+    "oneliner": "It computes \u03c0 digit by digit using an infinite series that isolates each hexadecimal digit through a weighted sum of fractions, allowing any specific digit to be extracted without calculating all preceding ones.\nThe BBP formula lets you skip straight to the ten-millionth digit of \u03c0 like flipping to a random page in a book \u2014 which sounds impossible until you realize mathematics occasionally forgets to respect common sense.",
+    "filename": "vizzes/014_bailey-borwein-plouffe.html",
+    "timestamp": "2026-03-15T04:52:20.219402"
   }
 ]
