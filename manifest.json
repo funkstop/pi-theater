@@ -103,5 +103,12 @@
     "oneliner": "It expresses 2/\u03c0 as an infinite product of nested square roots of 2, built by repeatedly halving angles whose cosines converge to 1, capturing \u03c0 through the limit of inscribed polygon perimeters.\nVi\u00e8te essentially wrote \u03c0 as a fraction whose denominator is an infinite lullaby of twos falling asleep inside each other \u2014 and somehow that chaos converges.",
     "filename": "vizzes/015_vi\u00e8te's.html",
     "timestamp": "2026-03-15T05:02:41.987453"
+  },
+  {
+    "id": 16,
+    "method": "Chudnovsky algorithm",
+    "oneliner": "It sums a rapidly converging hypergeometric series derived from Ramanujan's work, where each term adds roughly 14\u201315 correct decimal digits of \u03c0.\nThe algorithm is so efficient that computing a trillion digits of \u03c0 takes less time than explaining to a non-mathematician why anyone would want to.",
+    "filename": "vizzes/016_chudnovsky.html",
+    "timestamp": "2026-03-15T05:13:10.305655"
   }
 ]
