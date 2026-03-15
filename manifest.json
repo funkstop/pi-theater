@@ -110,5 +110,12 @@
     "oneliner": "It sums a rapidly converging hypergeometric series derived from Ramanujan's work, where each term adds roughly 14\u201315 correct decimal digits of \u03c0.\nThe algorithm is so efficient that computing a trillion digits of \u03c0 takes less time than explaining to a non-mathematician why anyone would want to.",
     "filename": "vizzes/016_chudnovsky.html",
     "timestamp": "2026-03-15T05:13:10.305655"
+  },
+  {
+    "id": 17,
+    "method": "Newton's arcsin series",
+    "oneliner": "It expresses \u03c0/6 as arcsin(1/2) and then computes that arcsine via Newton's infinite series expansion, summing terms until the desired precision is reached.\nThe man who invented calculus to conquer the cosmos apparently spent non-trivial time adding fractions to chase a circle \u2014 and still got bored and stopped at fifteen decimal places.",
+    "filename": "vizzes/017_newton's.html",
+    "timestamp": "2026-03-15T05:23:34.365628"
   }
 ]
