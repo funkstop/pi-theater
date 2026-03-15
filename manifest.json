@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": 1,
+    "method": "Monte Carlo random sampling",
+    "oneliner": "It estimates \u03c0 by randomly scattering points in a square and checking what fraction land inside the inscribed circle, exploiting the fact that the ratio of their areas is \u03c0/4.\nEssentially, we've reduced one of history's most profound constants to a dartboard problem \u2014 and the worse you are at darts, the more points you need.",
+    "filename": "vizzes/001_monte.html",
+    "timestamp": "2026-03-15T01:58:15.039492"
+  }
+]
