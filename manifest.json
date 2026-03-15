@@ -131,5 +131,12 @@
     "oneliner": "It iteratively refines estimates of \u03c0 using algebraic relationships derived from the arithmetic-geometric mean, doubling the number of correct digits with each step.\nLike a mathematical rumor that gets more accurate every time it's repeated, this algorithm gossips its way to \u03c0 so efficiently that ten iterations already outpace the atoms in the observable universe.",
     "filename": "vizzes/019_borwein's.html",
     "timestamp": "2026-03-15T05:54:46.923130"
+  },
+  {
+    "id": 20,
+    "method": "Spigot algorithm for \u03c0 digits",
+    "oneliner": "It generates \u03c0 digit by digit using only integer arithmetic by repeatedly extracting (\"spigoting out\") digits through a cascading carry process across an array of fractions that collectively encode \u03c0's series expansion.\nOnce a digit drips out, the algorithm never needs it again \u2014 like a faucet that forgets water, it computes the infinite with finite memory and no floating point, which is either deeply elegant or deeply unsettling depending on how much you trust integers.",
+    "filename": "vizzes/020_spigot.html",
+    "timestamp": "2026-03-15T07:11:09.746143"
   }
 ]
