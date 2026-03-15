@@ -33,5 +33,12 @@
     "oneliner": "By inscribing regular polygons with doubling sides inside a circle, Liu Hui showed that the polygon's perimeter converges to the circle's circumference, trapping \u03c0 between ever-tightening bounds.\nHe essentially argued that infinity is just a very large number of triangles \u2014 and got \u03c0 \u2248 3.14159 with a 3072-gon, thirteen centuries before calculus gave us a fancier way to say the same thing.",
     "filename": "vizzes/005_liu.html",
     "timestamp": "2026-03-15T02:54:50.025008"
+  },
+  {
+    "id": 6,
+    "method": "Nilakantha series (India, ~1500 CE)",
+    "oneliner": "An infinite alternating series adds and subtracts fractions of the form 4/[n(n+1)(n+2)] starting at n=2 to the base value of 3, converging to \u03c0 through cancellation of errors that shrink with each term.\nFive centuries before calculus had a name in Europe, an Indian mathematician was already doing calculus \u2014 he just called it \"finding \u03c0.\"",
+    "filename": "vizzes/006_nilakantha.html",
+    "timestamp": "2026-03-15T03:05:33.399066"
   }
 ]
