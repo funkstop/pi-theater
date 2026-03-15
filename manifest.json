@@ -201,5 +201,12 @@
     "oneliner": "Randomly dropping a needle of length *l* onto a floor with parallel lines spaced *d* apart (where *l* \u2264 *d*) yields a crossing probability of 2*l*/(\u03c0d), so counting hits over many throws lets you estimate \u03c0 from pure geometry and chance.\nA man in the 1700s realized you could compute a transcendental number by littering your floor with needles \u2014 making \u03c0 the only mathematical constant you can approximate through an act that would annoy your houseguests.",
     "filename": "vizzes/029_buffon's.html",
     "timestamp": "2026-03-15T08:45:21.670700"
+  },
+  {
+    "id": 30,
+    "method": "Wallis infinite product",
+    "oneliner": "It expresses \u03c0/2 as an infinite product of rational fractions, (2/1)\u00b7(2/3)\u00b7(4/3)\u00b7(4/5)\u00b7(6/5)\u00b7(6/7)\u00b7\u00b7\u00b7, where each successive pair of terms squeezes the value closer to \u03c0/2 by alternately overshooting and undershooting.\nWallis essentially convinced \u03c0 to reveal itself through an infinite negotiation between even and odd integers \u2014 and remarkably, it works even though every single factor in the product is irrational's opposite: a perfectly boring rational number.",
+    "filename": "vizzes/030_wallis.html",
+    "timestamp": "2026-03-15T08:55:41.438766"
   }
 ]
