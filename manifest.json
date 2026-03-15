@@ -194,5 +194,12 @@
     "oneliner": "Al-Kashi approximated \u03c0 by inscribing and circumscribing regular polygons with 3\u00b72\u207f sides around a circle, computing their perimeters to squeeze \u03c0 between ever-tightening bounds until reaching 16 correct decimal places.\nHe essentially out-Archimedes'd Archimedes by a millennium and a half, achieving with a 3\u00d72\u00b2\u2078-gon what no one had bothered to finish \u2014 proving that sometimes the best innovation is just refusing to stop iterating.",
     "filename": "vizzes/028_al-kashi's.html",
     "timestamp": "2026-03-15T08:34:45.517960"
+  },
+  {
+    "id": 29,
+    "method": "Buffon's Needle probability",
+    "oneliner": "Randomly dropping a needle of length *l* onto a floor with parallel lines spaced *d* apart (where *l* \u2264 *d*) yields a crossing probability of 2*l*/(\u03c0d), so counting hits over many throws lets you estimate \u03c0 from pure geometry and chance.\nA man in the 1700s realized you could compute a transcendental number by littering your floor with needles \u2014 making \u03c0 the only mathematical constant you can approximate through an act that would annoy your houseguests.",
+    "filename": "vizzes/029_buffon's.html",
+    "timestamp": "2026-03-15T08:45:21.670700"
   }
 ]
