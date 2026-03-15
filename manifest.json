@@ -1,16 +1,1 @@
-[
-  {
-    "id": 1,
-    "method": "Monte Carlo random sampling",
-    "oneliner": "It estimates \u03c0 by randomly scattering points in a unit square and measuring what fraction land inside the inscribed quarter-circle, exploiting the ratio of their areas (\u03c0/4) to back-calculate \u03c0.\nThe universe doesn't know \u03c0 either \u2014 it just keeps throwing darts until the answer emerges from the chaos, which is either profound or deeply inefficient depending on your deadline.",
-    "filename": "vizzes/001_monte.html",
-    "timestamp": "2026-03-15T01:44:44.943797"
-  },
-  {
-    "id": 2,
-    "method": "Leibniz-Gregory infinite series",
-    "oneliner": "It sums the infinite alternating series 1 - 1/3 + 1/5 - 1/7 + \u22ef, exploiting the Taylor expansion of arctan(x) evaluated at x=1, since arctan(1) = \u03c0/4.\nThe formula is so beautifully simple that it's almost insulting \u2014 nature hid \u03c0 inside the odd numbers all along, and it only took humanity until the 14th century to notice.",
-    "filename": "vizzes/002_leibniz-gregory.html",
-    "timestamp": "2026-03-15T01:49:42.777018"
-  }
-]
+[]
