@@ -5,5 +5,12 @@
     "oneliner": "Throwing darts blindly at a circle somehow reveals \u03c0.",
     "filename": "vizzes/001_monte.html",
     "timestamp": "2026-03-15T00:40:31.292023"
+  },
+  {
+    "id": 2,
+    "method": "Leibniz-Gregory infinite series",
+    "oneliner": "Leibniz proved \u03c0 hides in odd numbers, infinitely patient.",
+    "filename": "vizzes/002_leibniz-gregory.html",
+    "timestamp": "2026-03-15T00:51:05.757451"
   }
 ]
