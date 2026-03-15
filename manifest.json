@@ -138,5 +138,12 @@
     "oneliner": "It generates \u03c0 digit by digit using only integer arithmetic by repeatedly extracting (\"spigoting out\") digits through a cascading carry process across an array of fractions that collectively encode \u03c0's series expansion.\nOnce a digit drips out, the algorithm never needs it again \u2014 like a faucet that forgets water, it computes the infinite with finite memory and no floating point, which is either deeply elegant or deeply unsettling depending on how much you trust integers.",
     "filename": "vizzes/020_spigot.html",
     "timestamp": "2026-03-15T07:11:09.746143"
+  },
+  {
+    "id": 21,
+    "method": "Monte Carlo random sampling",
+    "oneliner": "It estimates \u03c0 by randomly scattering points in a square and checking what fraction land inside the inscribed circle, exploiting the fact that the ratio of their areas is \u03c0/4.\nThe universe doesn't know \u03c0 either \u2014 it just keeps guessing randomly until the answer emerges, which is either profound or deeply inefficient, depending on your deadline.",
+    "filename": "vizzes/021_monte.html",
+    "timestamp": "2026-03-15T07:21:19.165656"
   }
 ]
