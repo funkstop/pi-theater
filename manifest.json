@@ -26,5 +26,12 @@
     "oneliner": "It sums the infinite alternating series 1 - 1/3 + 1/5 - 1/7 + \u22ef, exploiting the Taylor series of arctan(x) evaluated at x = 1, since arctan(1) = \u03c0/4.\nThe formula is so beautifully simple that it fits on a napkin, yet so catastrophically slow to converge that you'd need millions of terms just to trust the fifth decimal place \u2014 elegance and uselessness, perfectly balanced.",
     "filename": "vizzes/004_leibniz-gregory.html",
     "timestamp": "2026-03-15T02:44:23.655288"
+  },
+  {
+    "id": 5,
+    "method": "Liu Hui's polygon method (China, 263 CE)",
+    "oneliner": "By inscribing regular polygons with doubling sides inside a circle, Liu Hui showed that the polygon's perimeter converges to the circle's circumference, trapping \u03c0 between ever-tightening bounds.\nHe essentially argued that infinity is just a very large number of triangles \u2014 and got \u03c0 \u2248 3.14159 with a 3072-gon, thirteen centuries before calculus gave us a fancier way to say the same thing.",
+    "filename": "vizzes/005_liu.html",
+    "timestamp": "2026-03-15T02:54:50.025008"
   }
 ]
