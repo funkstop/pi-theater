@@ -19,5 +19,12 @@
     "oneliner": "By inscribing and circumscribing regular polygons around a circle and doubling their sides repeatedly, Archimedes trapped \u03c0 between ever-tightening bounds, since a polygon's perimeter approaches the circle's circumference as the number of sides grows toward infinity.\nArchimedes squeezed \u03c0 to 3.1408 < \u03c0 < 3.1429 using 96-sided polygons \u2014 with nothing but a compass, straightedge, and the audacity to out-think infinity by hand.",
     "filename": "vizzes/003_archimedes'.html",
     "timestamp": "2026-03-15T02:34:07.615273"
+  },
+  {
+    "id": 4,
+    "method": "Leibniz-Gregory infinite series",
+    "oneliner": "It sums the infinite alternating series 1 - 1/3 + 1/5 - 1/7 + \u22ef, exploiting the Taylor series of arctan(x) evaluated at x = 1, since arctan(1) = \u03c0/4.\nThe formula is so beautifully simple that it fits on a napkin, yet so catastrophically slow to converge that you'd need millions of terms just to trust the fifth decimal place \u2014 elegance and uselessness, perfectly balanced.",
+    "filename": "vizzes/004_leibniz-gregory.html",
+    "timestamp": "2026-03-15T02:44:23.655288"
   }
 ]
