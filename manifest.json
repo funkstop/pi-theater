@@ -96,5 +96,12 @@
     "oneliner": "It computes \u03c0 digit by digit using an infinite series that isolates each hexadecimal digit through a weighted sum of fractions, allowing any specific digit to be extracted without calculating all preceding ones.\nThe BBP formula lets you skip straight to the ten-millionth digit of \u03c0 like flipping to a random page in a book \u2014 which sounds impossible until you realize mathematics occasionally forgets to respect common sense.",
     "filename": "vizzes/014_bailey-borwein-plouffe.html",
     "timestamp": "2026-03-15T04:52:20.219402"
+  },
+  {
+    "id": 15,
+    "method": "Vi\u00e8te's infinite nested radicals",
+    "oneliner": "It expresses 2/\u03c0 as an infinite product of nested square roots of 2, built by repeatedly halving angles whose cosines converge to 1, capturing \u03c0 through the limit of inscribed polygon perimeters.\nVi\u00e8te essentially wrote \u03c0 as a fraction whose denominator is an infinite lullaby of twos falling asleep inside each other \u2014 and somehow that chaos converges.",
+    "filename": "vizzes/015_vi\u00e8te's.html",
+    "timestamp": "2026-03-15T05:02:41.987453"
   }
 ]
