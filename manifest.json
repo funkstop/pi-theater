@@ -47,5 +47,12 @@
     "oneliner": "355/113 approximates \u03c0 by taking the simple ratio of two integers chosen to match \u03c0's decimal expansion to six places, making it the best rational approximation of \u03c0 before requiring a denominator larger than 16,604.\nThe mnemonic hiding inside it is almost criminal: write 113355, split it in half, and stack the halves into a fraction \u2014 355/113 \u2014 as if Zu Chongzhi left a cheat code in the digits themselves.",
     "filename": "vizzes/007_zu.html",
     "timestamp": "2026-03-15T03:15:57.332618"
+  },
+  {
+    "id": 8,
+    "method": "Al-Kashi's polygon method (Persia, 1424 CE)",
+    "oneliner": "Al-Kashi approximated \u03c0 by inscribing and circumscribing regular polygons with 3\u00d72\u207f sides around a circle, computing their perimeters to squeeze the true circumference between ever-tighter bounds.\nHe carried his calculation to 16 decimal places in 1424 \u2014 a record that stood for over 150 years \u2014 essentially out-\u03c0-ing everyone in the world using nothing but a pen, patience, and a very large power of 2.",
+    "filename": "vizzes/008_al-kashi's.html",
+    "timestamp": "2026-03-15T03:26:31.064043"
   }
 ]
