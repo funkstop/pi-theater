@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": 1,
+    "method": "Monte Carlo random sampling",
+    "oneliner": "It estimates \u03c0 by randomly scattering points in a unit square and measuring what fraction land inside the inscribed quarter-circle, exploiting the ratio of their areas (\u03c0/4) to back-calculate \u03c0.\nThe universe doesn't know \u03c0 either \u2014 it just keeps throwing darts until the answer emerges from the chaos, which is either profound or deeply inefficient depending on your deadline.",
+    "filename": "vizzes/001_monte.html",
+    "timestamp": "2026-03-15T01:44:44.943797"
+  }
+]
