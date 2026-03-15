@@ -68,5 +68,12 @@
     "oneliner": "It expresses \u03c0/2 as an infinite product of rational fractions, (2/1)\u00b7(2/3)\u00b7(4/3)\u00b7(4/5)\u00b7(6/5)\u00b7(6/7)\u00b7\u00b7\u00b7, where each successive pair of terms squeezes the value closer to \u03c0/2 through a beautifully symmetric pattern of even and odd integers.\nWallis essentially convinced \u03c0 to reveal itself through nothing but whole numbers and patience \u2014 no circles, no geometry, just fractions multiplying forever until the universe confesses its most irrational secret.",
     "filename": "vizzes/010_wallis.html",
     "timestamp": "2026-03-15T04:10:29.234130"
+  },
+  {
+    "id": 11,
+    "method": "Aryabhata's approximation (India, 499 CE)",
+    "oneliner": "Aryabhata gave the fraction 62832/20000, equivalent to 3.1416, by essentially stating it as a direct approximation without deriving it from a geometric construction, suggesting he may have computed it empirically or inherited a refined value from earlier traditions.\nIt's quietly remarkable that a fifth-century astronomer handed us four correct decimal places of \u03c0 with a fraction that looks almost arbitrary \u2014 yet it's more accurate than anything Europe would manage for another thousand years.",
+    "filename": "vizzes/011_aryabhata's.html",
+    "timestamp": "2026-03-15T04:20:50.974072"
   }
 ]
