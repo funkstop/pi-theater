@@ -19,5 +19,12 @@
     "oneliner": "Nilakantha kept adding fractions until \u03c0 finally confessed.",
     "filename": "vizzes/003_nilakantha.html",
     "timestamp": "2026-03-15T01:01:21.335829"
+  },
+  {
+    "id": 4,
+    "method": "Buffon's Needle probability",
+    "oneliner": "Dropping needles on floorboards: the laziest way to calculate \u03c0.",
+    "filename": "vizzes/004_buffon's.html",
+    "timestamp": "2026-03-15T01:11:46.694856"
   }
 ]
