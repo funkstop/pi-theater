@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monte Carlo π Estimation</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0d0d1a;
+    color: #e0e0ff;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #a0a0cc;
+    margin-bottom: 0.3rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    color: #5555aa;
+    letter-spacing: 0.15em;
+    margin-bottom: 2.5rem;
+  }
+
+  .main-card {
+    background: #13132a;
+    border: 1px solid #2a2a55;
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 860px;
+    width: 100%;
+    box-shadow: 0 0 60px rgba(100, 80, 255, 0.12);
+  }
+
+  .layout {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  canvas {
+    border-radius: 12px;
+    border: 1px solid #2a2a55;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .right-panel {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .pi-display {
+    text-align: center;
+    background: linear-gradient(135deg, #1a1a3a, #1e1040);
+    border: 1px solid #3a2a88;
+    border-radius: 14px;
+    padding: 1.5rem 1rem;
+  }
+
+  .pi-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #7070bb;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .pi-value {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+  }
+
+  .pi-actual {
+    font-size: 0.72rem;
+    color: #5555aa;
+    margin-top: 0.5rem;
+  }
+
+  .pi-actual span {
+    color: #8888cc;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+
+  .stat-box {
+    background: #0f0f22;
+    border: 1px solid #222244;
+    border-radius: 10px;
+    padding: 0.8rem;
+    text-align: center;
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: #5555aa;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .stat-inside { color: #a78bfa; }
+  .stat-outside { color: #f472b6; }
+  .stat-total { color: #60a5fa; }
+  .stat-error { color: #34d399; }
+
+  .legend {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: #8888bb;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-inside { background: #a78bfa; }
+  .dot-outside { background: #f472b6; }
+
+  .explanation {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #1e1e3a;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #8888bb;
+    text-align: center;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .explanation strong {
+    color: #a78bfa;
+  }
+
+  .formula {
+    display: inline-block;
+    background: #0f0f22;
+    border: 1px solid #2a2a55;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    color: #c0c0ff;
+    margin-top: 1rem;
+    letter-spacing: 0.05em;
+    font-family: 'Courier New', monospace;
+  }
+
+  .formula .highlight { color: #a78bfa; }
+  .formula .highlight2 { color: #60a5fa; }
+
+  @media (max-width: 600px) {
+    .layout { flex-direction: column; align-items: center; }
+    .pi-value { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Monte Carlo Simulation</h1>
+<p class="subtitle">Estimating π through randomness</p>
+
+<div class="main-card">
+  <div class="layout">
+    <canvas id="canvas" width="380" height="380"></canvas>
+    <div class="right-panel">
+      <div class="pi-display">
+        <div class="pi-label">Estimated Value of π</div>
+        <div class="pi-value" id="piValue">—</div>
+        <div class="pi-actual">Actual π = <span>3.14159265…</span></div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">Inside Circle</div>
+          <div class="stat-value stat-inside" id="insideCount">—</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Outside Circle</div>
+          <div class="stat-value stat-outside" id="outsideCount">—</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Total Points</div>
+          <div class="stat-value stat-total" id="totalCount">—</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Error</div>
+          <div class="stat-value stat-error" id="errorVal">—</div>
+        </div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-dot dot-inside"></div>
+          Inside circle
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot dot-outside"></div>
+          Outside circle
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="explanation">
+    <strong>Random points</strong> are scattered uniformly inside a square that perfectly encloses a quarter-circle of radius 1 — the ratio of points landing inside the circle to the total converges to <strong>π/4</strong>, since the circle's area is πr² and the square's area is 4r².
+    Multiplying that ratio by 4 gives us our estimate of π, growing more accurate as the number of samples increases.
+    <br>
+    <div class="formula">
+      π ≈ 4 × <span class="highlight">inside</span> / <span class="highlight2">total</span>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width;
+  const H = canvas.height;
+  const N = 8000;
+
+  // Seeded LCG random for reproducibility
+  let seed = 20240101;
+  function rand() {
+    seed = (seed * 1664525 + 1013904223) & 0xffffffff;
+    return (seed >>> 0) / 0xffffffff;
+  }
+
+  // Generate points
+  const points = [];
+  let inside = 0;
+  for (let i = 0; i < N; i++) {
+    const x = rand();
+    const y = rand();
+    const inCircle = (x * x + y * y) <= 1.0;
+    if (inCircle) inside++;
+    points.push({ x, y, inCircle });
+  }
+
+  const piEst = 4 * inside / N;
+  const error = Math.abs(piEst - Math.PI);
+
+  // Draw background
+  ctx.fillStyle = '#0d0d1a';
+  ctx.fillRect(0, 0, W, H);
+
+  // Draw square border
+  ctx.strokeStyle = '#2a2a55';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(1, 1, W - 2, H - 2);
+
+  // Draw quarter circle arc (full circle for visual, using full square)
+  const cx = 0, cy = H;
+  const r = W;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, -Math.PI / 2, 0);
+  ctx.strokeStyle = 'rgba(167, 139, 250, 0.35)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Fill arc region subtly
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.arc(cx, cy, r, -Math.PI / 2, 0);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(167, 139, 250, 0.04)';
+  ctx.fill();
+
+  // Draw points
+  const insideColor = 'rgba(167, 139, 250, 0.75)';
+  const outsideColor = 'rgba(244, 114, 182, 0.65)';
+
+  // Draw in batches for performance
+  for (let i = 0; i < points.length; i++) {
+    const p = points[i];
+    const px = p.x * W;
+    const py = (1 - p.y) * H;
+    ctx.beginPath();
+    ctx.arc(px, py, 1.5, 0, Math.PI * 2);
+    ctx.fillStyle = p.inCircle ? insideColor : outsideColor;
+    ctx.fill();
+  }
+
+  // Redraw arc on top
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, -Math.PI / 2, 0);
+  ctx.strokeStyle = 'rgba(167, 139, 250, 0.6)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Corner label
+  ctx.fillStyle = 'rgba(100, 100, 180, 0.5)';
+  ctx.font = '11px monospace';
+  ctx.fillText('n = ' + N.toLocaleString(), 10, H - 10);
+
+  // Update DOM
+  document.getElementById('piValue').textContent = piEst.toFixed(5);
+  document.getElementById('insideCount').textContent = inside.toLocaleString();
+  document.getElementById('outsideCount').textContent = (N - inside).toLocaleString();
+  document.getElementById('totalCount').textContent = N.toLocaleString();
+  document.getElementById('errorVal').textContent = error.toFixed(5);
+})();
+</script>
+</body>
+</html>

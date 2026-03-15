@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nilakantha Series — π Approximation</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0d0d1a;
+    color: #e0e0ff;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #7b8cde;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    color: #4a4a7a;
+    letter-spacing: 0.15em;
+    margin-bottom: 40px;
+  }
+
+  .pi-display {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .pi-label {
+    font-size: 1rem;
+    color: #7b8cde;
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+  }
+
+  .pi-value {
+    font-size: 3.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #a78bfa, #60a5fa, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.05em;
+    line-height: 1.1;
+  }
+
+  .pi-true {
+    font-size: 0.9rem;
+    color: #4a4a7a;
+    margin-top: 8px;
+  }
+
+  .pi-true span {
+    color: #34d399;
+    font-weight: 600;
+  }
+
+  .error-badge {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: rgba(52, 211, 153, 0.12);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    font-size: 0.8rem;
+    color: #34d399;
+    letter-spacing: 0.1em;
+  }
+
+  .chart-section {
+    width: 100%;
+    max-width: 820px;
+    background: #12122a;
+    border: 1px solid #1e1e40;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 36px;
+  }
+
+  .chart-title {
+    font-size: 0.85rem;
+    color: #7b8cde;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  canvas {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .terms-grid {
+    width: 100%;
+    max-width: 820px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .term-card {
+    background: #12122a;
+    border: 1px solid #1e1e40;
+    border-radius: 10px;
+    padding: 14px 16px;
+    transition: border-color 0.2s;
+  }
+
+  .term-card:hover { border-color: #7b8cde; }
+
+  .term-n {
+    font-size: 0.72rem;
+    color: #4a4a7a;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  .term-val {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #a78bfa;
+  }
+
+  .term-approx {
+    font-size: 0.78rem;
+    color: #60a5fa;
+    margin-top: 3px;
+  }
+
+  .formula-box {
+    width: 100%;
+    max-width: 820px;
+    background: #12122a;
+    border: 1px solid #1e1e40;
+    border-radius: 16px;
+    padding: 28px 30px;
+    margin-bottom: 36px;
+    text-align: center;
+  }
+
+  .formula {
+    font-size: 1.3rem;
+    color: #e0e0ff;
+    letter-spacing: 0.05em;
+    margin-bottom: 18px;
+    line-height: 1.8;
+  }
+
+  .formula .frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 4px;
+  }
+
+  .formula .frac .num {
+    border-bottom: 1.5px solid #7b8cde;
+    padding: 0 4px 2px;
+    font-size: 0.9rem;
+    color: #a78bfa;
+  }
+
+  .formula .frac .den {
+    padding: 2px 4px 0;
+    font-size: 0.9rem;
+    color: #60a5fa;
+  }
+
+  .formula .op { color: #34d399; font-weight: 700; margin: 0 6px; }
+  .formula .pi-sym { color: #f472b6; font-size: 1.5rem; font-weight: 700; }
+
+  .explanation {
+    font-size: 0.9rem;
+    color: #8888aa;
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .explanation strong { color: #a78bfa; }
+
+  .convergence-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .conv-label {
+    font-size: 0.75rem;
+    color: #4a4a7a;
+    width: 70px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .conv-bar-wrap {
+    flex: 1;
+    height: 22px;
+    background: #0d0d1a;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .conv-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s;
+  }
+
+  .conv-val {
+    font-size: 0.75rem;
+    color: #e0e0ff;
+    width: 120px;
+    flex-shrink: 0;
+    font-family: monospace;
+  }
+
+  footer {
+    font-size: 0.75rem;
+    color: #2a2a4a;
+    margin-top: 10px;
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+
+<h1>Nilakantha Series</h1>
+<p class="subtitle">Infinite Series Approximation of π</p>
+
+<div class="pi-display">
+  <div class="pi-label">ESTIMATED VALUE OF π</div>
+  <div class="pi-value" id="piVal">—</div>
+  <div class="pi-true">True π ≈ <span>3.14159265358979…</span></div>
+  <div class="error-badge" id="errBadge">—</div>
+</div>
+
+<!-- Formula -->
+<div class="formula-box">
+  <div class="formula">
+    <span class="pi-sym">π</span>
+    <span class="op">=</span>
+    3
+    <span class="op">+</span>
+    <span class="frac"><span class="num">4</span><span class="den">2·3·4</span></span>
+    <span class="op">−</span>
+    <span class="frac"><span class="num">4</span><span class="den">4·5·6</span></span>
+    <span class="op">+</span>
+    <span class="frac"><span class="num">4</span><span class="den">6·7·8</span></span>
+    <span class="op">−</span>
+    <span class="frac"><span class="num">4</span><span class="den">8·9·10</span></span>
+    <span class="op">+</span> ···
+  </div>
+  <p class="explanation">
+    The <strong>Nilakantha series</strong> (15th century, Kerala school) expresses π as 3 plus an
+    alternating sum of fractions whose denominators are products of three consecutive even-rooted integers.
+    Each additional term corrects the estimate, converging to π <strong>far faster</strong> than the
+    Leibniz formula — just 10 terms already yield 6 correct decimal places.
+  </p>
+</div>
+
+<!-- Convergence chart -->
+<div class="chart-section">
+  <div class="chart-title">Convergence to π — first 60 terms</div>
+  <canvas id="chart" height="260"></canvas>
+</div>
+
+<!-- Convergence bars -->
+<div class="chart-section">
+  <div class="chart-title">Approximation at selected term counts</div>
+  <div id="convBars"></div>
+</div>
+
+<!-- Term cards -->
+<div class="chart-section">
+  <div class="chart-title">First 12 partial sums</div>
+  <div class="terms-grid" id="termGrid"></div>
+</div>
+
+<footer>Nilakantha Somayaji · Tantrasamgraha · c. 1500 CE</footer>
+
+<script>
+// ── Compute Nilakantha series ──────────────────────────────────────────────
+const TRUE_PI = Math.PI;
+const N = 500;
+
+function nilakantha(terms) {
+  let sum = 3;
+  let sign = 1;
+  for (let k = 1; k <= terms; k++) {
+    const n = 2 * k;
+    sum += sign * (4 / (n * (n + 1) * (n + 2)));
+    sign *= -1;
+  }
+  return sum;
+}
+
+// Partial sums array
+const partials = [];
+for (let i = 1; i <= N; i++) partials.push(nilakantha(i));
+
+const piEst = partials[N - 1];
+const absErr = Math.abs(piEst - TRUE_PI);
+
+// ── Display final value ────────────────────────────────────────────────────
+document.getElementById('piVal').textContent = piEst.toFixed(12);
+document.getElementById('errBadge').textContent =
+  `Error after ${N} terms: ${absErr.toExponential(3)}`;
+
+// ── Term cards (first 12) ──────────────────────────────────────────────────
+const grid = document.getElementById('termGrid');
+const colors = ['#a78bfa','#818cf8','#60a5fa','#38bdf8','#34d399','#4ade80',
+                 '#facc15','#fb923c','#f472b6','#e879f9','#c084fc','#a78bfa'];
+for (let i = 0; i < 12; i++) {
+  const card = document.createElement('div');
+  card.className = 'term-card';
+  const n = 2*(i+1);
+  const termVal = 4 / (n*(n+1)*(n+2));
+  card.innerHTML = `
+    <div class="term-n">TERM n = ${i+1}</div>
+    <div class="term-val" style="color:${colors[i]}">
+      ${i % 2 === 0 ? '+' : '−'}${termVal.toFixed(8)}
+    </div>
+    <div class="term-approx">π ≈ ${partials[i].toFixed(8)}</div>
+  `;
+  grid.appendChild(card);
+}
+
+// ── Convergence bars ───────────────────────────────────────────────────────
+const milestones = [1,2,3,5,8,13,21,34,55,100,200,500];
+const barsDiv = document.getElementById('convBars');
+const maxErr = Math.abs(partials[0] - TRUE_PI);
+
+milestones.forEach((m, idx) => {
+  const val = partials[m - 1];
+  const err = Math.abs(val - TRUE_PI);
+  const pct = Math.max(0, 1 - Math.log10(err / maxErr) / 10);
+  const hue = 260 + idx * 12;
+  const row = document.createElement('div');
+  row.className = 'convergence-row';
+  row.innerHTML = `
+    <div class="conv-label">n = ${m}</div>
+    <div class="conv-bar-wrap">
+      <div class="conv-bar" style="width:${(pct*100).toFixed(1)}%;
+        background: linear-gradient(90deg, hsl(${hue},70%,55%), hsl(${hue+40},80%,65%));">
+      </div>
+    </div>
+    <div class="conv-val">${val.toFixed(10)}</div>
+  `;
+  barsDiv.appendChild(row);
+});
+
+// ── Canvas chart ───────────────────────────────────────────────────────────
+const canvas = document.getElementById('chart');
+const dpr = window.devicePixelRatio || 1;
+const W = canvas.parentElement.clientWidth - 60;
+const H = 260;
+canvas.width = W * dpr;
+canvas.height = H * dpr;
+canvas.style.width = W + 'px';
+canvas.style.height = H + 'px';
+const ctx = canvas.getContext('2d');
+ctx.scale(dpr, dpr);
+
+const PAD = { top: 20, right: 20, bottom: 36, left: 58 };
+const cW = W - PAD.left - PAD.right;
+const cH = H - PAD.top - PAD.bottom;
+
+// Use first 60 terms for chart
+const chartData = partials.slice(0, 60);
+const yMin = Math.min(...chartData) - 0.0005;
+const yMax = Math.max(...chartData) + 0.0005;
+
+function xPos(i) { return PAD.left + (i / (chartData.length - 1)) * cW; }
+function yPos(v) { return PAD.top + (1 - (v - yMin) / (yMax - yMin)) * cH; }
+
+// Grid lines
+ctx.strokeStyle = '#1e1e40';
+ctx.lineWidth = 1;
+const yTicks = 5;
+for (let t = 0; t <= yTicks; t++) {
+  const v = yMin + (t / yTicks) * (yMax - yMin);
+  const y = yPos(v);
+  ctx.beginPath();
+  ctx.moveTo(PAD.left, y);
+  ctx.lineTo(PAD.left + cW, y);
+  ctx.stroke();
+  ctx.fillStyle = '#4a4a7a';
+  ctx.font = `${10 * dpr / dpr}px monospace`;
+  ctx.textAlign =

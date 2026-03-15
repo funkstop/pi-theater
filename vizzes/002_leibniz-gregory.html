@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leibniz–Gregory Series: π Approximation</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0d0d1a;
+    color: #e0e0ff;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: #a78bfa;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    color: #6b7280;
+    letter-spacing: 0.08em;
+    margin-bottom: 40px;
+  }
+
+  /* ── π hero ── */
+  .pi-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 44px;
+  }
+
+  .pi-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #6b7280;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .pi-value {
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, #f472b6, #a78bfa, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .pi-true {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: #4ade80;
+    letter-spacing: 0.06em;
+  }
+
+  .pi-error {
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: #fb923c;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── formula ── */
+  .formula-box {
+    background: #13132b;
+    border: 1px solid #2d2d5e;
+    border-radius: 14px;
+    padding: 18px 32px;
+    margin-bottom: 40px;
+    text-align: center;
+    max-width: 520px;
+    width: 100%;
+  }
+
+  .formula {
+    font-size: 1.25rem;
+    color: #f9a8d4;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+
+  .formula span { color: #38bdf8; }
+
+  .explanation {
+    font-size: 0.82rem;
+    color: #9ca3af;
+    line-height: 1.65;
+  }
+
+  /* ── chart area ── */
+  .chart-wrapper {
+    width: 100%;
+    max-width: 820px;
+    background: #13132b;
+    border: 1px solid #2d2d5e;
+    border-radius: 16px;
+    padding: 28px 28px 20px;
+    margin-bottom: 36px;
+  }
+
+  .chart-title {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    color: #6b7280;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  canvas {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+  }
+
+  /* ── term table ── */
+  .table-wrapper {
+    width: 100%;
+    max-width: 820px;
+    background: #13132b;
+    border: 1px solid #2d2d5e;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 36px;
+    overflow-x: auto;
+  }
+
+  .table-title {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    color: #6b7280;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  th {
+    color: #a78bfa;
+    font-weight: 600;
+    text-align: left;
+    padding: 6px 12px;
+    border-bottom: 1px solid #2d2d5e;
+    letter-spacing: 0.06em;
+  }
+
+  td {
+    padding: 7px 12px;
+    border-bottom: 1px solid #1e1e3f;
+    color: #d1d5db;
+    font-variant-numeric: tabular-nums;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  .pos { color: #4ade80; }
+  .neg { color: #f87171; }
+
+  /* ── convergence bar ── */
+  .conv-wrapper {
+    width: 100%;
+    max-width: 820px;
+    background: #13132b;
+    border: 1px solid #2d2d5e;
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 36px;
+  }
+
+  .conv-title {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    color: #6b7280;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 9px;
+    gap: 10px;
+  }
+
+  .bar-label {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    width: 80px;
+    flex-shrink: 0;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 14px;
+    background: #1e1e3f;
+    border-radius: 7px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 7px;
+    transition: width 0s;
+  }
+
+  .bar-val {
+    font-size: 0.72rem;
+    color: #e0e0ff;
+    width: 100px;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  footer {
+    font-size: 0.72rem;
+    color: #374151;
+    letter-spacing: 0.06em;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Leibniz – Gregory Series</h1>
+<p class="subtitle">An infinite series approximation of π</p>
+
+<!-- π hero -->
+<div class="pi-hero">
+  <div class="pi-label">Estimated π (10,000 terms)</div>
+  <div class="pi-value" id="piDisplay">…</div>
+  <div class="pi-true" id="piTrue"></div>
+  <div class="pi-error" id="piError"></div>
+</div>
+
+<!-- formula -->
+<div class="formula-box">
+  <div class="formula">
+    <span>π</span>/4 = 1 − 1/3 + 1/5 − 1/7 + 1/9 − ···
+  </div>
+  <p class="explanation">
+    The Leibniz–Gregory formula states that π/4 equals the alternating sum of reciprocals of all odd integers, discovered independently by Leibniz and Gregory in the 17th century.
+    Each additional term nudges the partial sum closer to π/4, so multiplying by 4 yields an ever-better estimate of π — though convergence is famously slow.
+  </p>
+</div>
+
+<!-- line chart -->
+<div class="chart-wrapper">
+  <div class="chart-title">Convergence of partial sums toward π</div>
+  <canvas id="lineChart" height="220"></canvas>
+</div>
+
+<!-- convergence bars -->
+<div class="conv-wrapper">
+  <div class="conv-title">Accuracy by number of terms</div>
+  <div id="barRows"></div>
+</div>
+
+<!-- term table -->
+<div class="table-wrapper">
+  <div class="table-title">First 20 terms of the series</div>
+  <table>
+    <thead>
+      <tr>
+        <th>n</th>
+        <th>Term</th>
+        <th>Value</th>
+        <th>Partial Sum × 4</th>
+        <th>Error vs π</th>
+      </tr>
+    </thead>
+    <tbody id="termTable"></tbody>
+  </table>
+</div>
+
+<footer>All computations performed in-browser · No external dependencies</footer>
+
+<script>
+// ── Compute series ──────────────────────────────────────────────
+const PI_TRUE = Math.PI;
+const N_FULL  = 10000;
+
+// Full series for final estimate
+let sum = 0;
+for (let k = 0; k < N_FULL; k++) {
+  sum += (k % 2 === 0 ? 1 : -1) / (2 * k + 1);
+}
+const piEstimate = 4 * sum;
+
+// Partial sums at sample points for line chart (200 points, log-spaced)
+const chartPoints = [];
+{
+  let s = 0;
+  const indices = new Set();
+  for (let i = 0; i <= 200; i++) {
+    const idx = Math.round(Math.pow(10, i / 200 * Math.log10(N_FULL)));
+    indices.add(Math.max(1, Math.min(idx, N_FULL)));
+  }
+  const sorted = [...indices].sort((a,b) => a-b);
+  let k = 0, ptr = 0;
+  for (let n = 1; n <= N_FULL; n++) {
+    s += (n % 2 === 1 ? 1 : -1) / (2*(n-1)+1);
+    if (ptr < sorted.length && n === sorted[ptr]) {
+      chartPoints.push({ n, pi4: 4*s });
+      ptr++;
+    }
+  }
+}
+
+// First 20 terms for table
+const tableRows = [];
+{
+  let s = 0;
+  for (let k = 0; k < 20; k++) {
+    const sign = k % 2 === 0 ? 1 : -1;
+    const denom = 2*k+1;
+    const term = sign / denom;
+    s += term;
+    tableRows.push({ n: k+1, sign, denom, term, partial4: 4*s });
+  }
+}
+
+// Convergence milestones
+const milestones = [1, 5, 10, 50, 100, 500, 1000, 5000, 10000];
+const milestoneData = [];
+{
+  let s = 0, k = 0;
+  for (const m of milestones) {
+    while (k < m) {
+      s += (k % 2 === 0 ? 1 : -1) / (2*k+1);
+      k++;
+    }
+    milestoneData.push({ n: m, pi4: 4*s });
+  }
+}
+
+// ── Render π hero ───────────────────────────────────────────────
+document.getElementById('piDisplay').textContent = piEstimate.toFixed(8);
+document.getElementById('piTrue').textContent =
+  `True π = ${PI_TRUE.toFixed(10)}`;
+document.getElementById('piError').textContent =
+  `Error = ${Math.abs(piEstimate - PI_TRUE).toExponential(4)}`;
+
+// ── Render table ────────────────────────────────────────────────
+const tbody = document.getElementById('termTable');
+tableRows.forEach(r => {
+  const tr = document.createElement('tr');
+  const signStr = r.sign > 0 ? '+' : '−';
+  const cls = r.sign > 0 ? 'pos' : 'neg';
+  const err = Math.abs(r.partial4 - PI_TRUE);
+  tr.innerHTML = `
+    <td>${r.n}</td>
+    <td class="${cls}">${signStr} 1/${r.denom}</td>
+    <td class="${cls}">${r.term.toFixed(6)}</td>
+    <td>${r.partial4.toFixed(6)}</td>
+    <td style="color:#fb923c">${err.toFixed(6)}</td>
+  `;
+  tbody.appendChild(tr);
+});
+
+// ── Render convergence bars ─────────────────────────────────────
+const barContainer = document.getElementById('barRows');
+const maxErr = Math.abs(milestoneData[0].pi4 - PI_TRUE);
+
+const gradients = [
+  '#f472b6','#e879f9','#a78bfa','#818cf8','#60a5fa','#38bdf8','#34d399','#4ade80','#facc15'
+];
+
+milestoneData.forEach((d, i) => {
+  const err = Math.abs(d.pi4 - PI_TRUE);
+  const accuracy = Math.max(0, 1 - err / maxErr);
+  const pct = (accuracy * 100).toFixed(1);
+
+  const row = document.createElement('div');
+  row.className = 'bar-row';
+  row.innerHTML = `
+    <div class="bar-label">${d.n.toLocaleString()} terms</div>
+    <div class="bar-track">
+      <div class="bar-fill" style="width:${pct}%;background:${gradients[i]}"></div>
+    </div>
+    <div class="bar-val">${d.pi4.toFixed(6)}</div>
+  `;
+  barContainer.appendChild(row);
+});
+
+// ── Render line chart (canvas) ──────────────────────────────────
+(function drawChart() {
+  const canvas = document.getElementById('lineChart');
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.parentElement.clientWidth - 56;
+  const H = 220;
+  canvas.width  = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width  = W + 'px';
+  canvas.style.height = H + 'px';
+
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const PAD = { top: 16, right: 20, bottom: 36, left: 56 };
+  const cW = W - PAD.left - PAD.right;
+  const cH = H - PAD.top  - PAD.bottom;
+
+  // value range
+  const vals = chartPoints.map(p => p.pi4);
+  const vMin = Math.min(...vals) - 0.05;
+  const vMax = Math.max(...vals) + 0.05;
+
+  // helpers
+  const xScale = n => PAD.left + (Math.log10(n) / Math.log10(N_FULL)) *
