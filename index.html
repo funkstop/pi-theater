@@ -15,7 +15,9 @@
   .counter { color:#888; font-size:0.9em; margin:0 12px; }
   .info { padding:10px 24px; background:#0d0d1a; border-bottom:1px solid #222; }
   .method { color:#7fff7f; font-size:1.05em; }
-  .oneliner { color:#aaa; font-size:0.88em; margin-top:3px; font-style:italic; }
+  .oneliner { color:#ccc; font-size:0.88em; margin-top:3px; }
+  .oneliner .desc { color:#ccc; }
+  .oneliner .wit { color:#ff9f43; font-style:italic; margin-top:2px; }
   .ts { color:#444; font-size:0.72em; margin-top:2px; }
   iframe { flex:1; border:none; width:100%; }
   .empty { flex:1; display:flex; align-items:center; justify-content:center; color:#333; font-size:1.1em; }
@@ -53,7 +55,8 @@
     const v = manifest[cur];
     document.getElementById("ctr").textContent = `${cur+1} / ${manifest.length}`;
     document.getElementById("method").textContent = v.method;
-    document.getElementById("oneliner").textContent = v.oneliner;
+    const lines = v.oneliner.split("\n");
+    document.getElementById("oneliner").innerHTML = `<div class="desc">${lines[0]||""}</div><div class="wit">${lines[1]||""}</div>`;
     document.getElementById("ts").textContent = new Date(v.timestamp).toLocaleString();
     document.getElementById("frame").src = v.filename+"?t="+Date.now();
     document.getElementById("prev").disabled = cur===0;
