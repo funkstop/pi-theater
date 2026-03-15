@@ -166,5 +166,12 @@
     "oneliner": "It sums the infinite alternating series 1 - 1/3 + 1/5 - 1/7 + \u22ef, exploiting the Taylor series of arctan(x) evaluated at x=1, since arctan(1) = \u03c0/4.\nIt's mathematically perfect and practically useless \u2014 after 300 terms you still don't have \u03c0 correct to three decimal places, making it history's most elegant way to be spectacularly wrong for a very long time.",
     "filename": "vizzes/024_leibniz-gregory.html",
     "timestamp": "2026-03-15T07:52:47.564135"
+  },
+  {
+    "id": 25,
+    "method": "Liu Hui's polygon method (China, 263 CE)",
+    "oneliner": "By inscribing regular polygons with doubling sides inside a circle, Liu Hui approximated \u03c0 as the polygon's perimeter approaches the circle's circumference in the limit.\nHe essentially argued that infinity lives just around the corner \u2014 and kept doubling his way toward it, reaching 3.14159 with a 3072-gon while Europe was still debating whether zero was a number.",
+    "filename": "vizzes/025_liu.html",
+    "timestamp": "2026-03-15T08:03:13.219683"
   }
 ]
