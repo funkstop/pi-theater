@@ -26,5 +26,12 @@
     "oneliner": "Dropping needles on floorboards: the laziest way to calculate \u03c0.",
     "filename": "vizzes/004_buffon's.html",
     "timestamp": "2026-03-15T01:11:46.694856"
+  },
+  {
+    "id": 5,
+    "method": "Wallis infinite product",
+    "oneliner": "Wallis multiplied his way to \u03c0 \u2014 fractions did what geometry couldn't.",
+    "filename": "vizzes/005_wallis.html",
+    "timestamp": "2026-03-15T01:22:03.941082"
   }
 ]
