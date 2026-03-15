@@ -82,5 +82,12 @@
     "oneliner": "It expresses \u03c0/4 as a combination of arctangent values at simple fractions\u2014specifically \u03c0/4 = 4\u00b7arctan(1/5) \u2212 arctan(1/239)\u2014then rapidly converges by exploiting the Taylor series for arctangent, which converges fastest near zero.\nMachin essentially discovered that the most transcendental number in mathematics is secretly embarrassed by 239, a number so awkward it makes the whole formula work beautifully.",
     "filename": "vizzes/012_machin's.html",
     "timestamp": "2026-03-15T04:31:14.887771"
+  },
+  {
+    "id": 13,
+    "method": "Ramanujan's rapidly converging series (India, 1914)",
+    "oneliner": "Ramanujan's series sums a sequence of carefully engineered terms involving factorials and powers of 26390, each term shrinking so rapidly that just the first term alone gives \u03c0 correct to six decimal places.\nA self-taught mathematician from a village with no electricity essentially handed the world a formula so absurdly efficient that computers still use it today \u2014 as if someone invented a jet engine while everyone else was still arguing about better shoes.",
+    "filename": "vizzes/013_ramanujan's.html",
+    "timestamp": "2026-03-15T04:42:02.609150"
   }
 ]
