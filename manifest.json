@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": 1,
+    "method": "Monte Carlo random sampling",
+    "oneliner": "Throwing darts blindly at a circle somehow reveals \u03c0.",
+    "filename": "vizzes/001_monte.html",
+    "timestamp": "2026-03-15T00:40:31.292023"
+  }
+]
