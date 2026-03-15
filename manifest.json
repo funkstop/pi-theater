@@ -54,5 +54,12 @@
     "oneliner": "Al-Kashi approximated \u03c0 by inscribing and circumscribing regular polygons with 3\u00d72\u207f sides around a circle, computing their perimeters to squeeze the true circumference between ever-tighter bounds.\nHe carried his calculation to 16 decimal places in 1424 \u2014 a record that stood for over 150 years \u2014 essentially out-\u03c0-ing everyone in the world using nothing but a pen, patience, and a very large power of 2.",
     "filename": "vizzes/008_al-kashi's.html",
     "timestamp": "2026-03-15T03:26:31.064043"
+  },
+  {
+    "id": 9,
+    "method": "Buffon's Needle probability",
+    "oneliner": "Randomly dropping a needle of length *l* onto a floor with parallel lines spaced *d* apart (where *l* \u2264 *d*) yields a crossing probability of 2*l*/(\u03c0d), so counting hits over many throws lets you estimate \u03c0 from pure geometry and chance.\nA man in the 1700s realized he could compute a transcendental number by littering his floor with sticks \u2014 and the more carelessly he threw them, the more mathematically rigorous the result became.",
+    "filename": "vizzes/009_buffon's.html",
+    "timestamp": "2026-03-15T04:00:12.014417"
   }
 ]
