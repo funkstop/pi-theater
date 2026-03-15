@@ -159,5 +159,12 @@
     "oneliner": "By inscribing and circumscribing regular polygons around a circle and doubling their sides repeatedly, Archimedes trapped \u03c0 between ever-tightening upper and lower bounds, squeezing its true value from both sides.\nArchimedes never had a computer, a calculator, or even decent notation for fractions \u2014 yet by sheer geometric stubbornness he cornered \u03c0 between 223/71 and 22/7 using a 96-sided polygon, proving that infinity can be ambushed with patience and a compass.",
     "filename": "vizzes/023_archimedes'.html",
     "timestamp": "2026-03-15T07:42:05.302588"
+  },
+  {
+    "id": 24,
+    "method": "Leibniz-Gregory infinite series",
+    "oneliner": "It sums the infinite alternating series 1 - 1/3 + 1/5 - 1/7 + \u22ef, exploiting the Taylor series of arctan(x) evaluated at x=1, since arctan(1) = \u03c0/4.\nIt's mathematically perfect and practically useless \u2014 after 300 terms you still don't have \u03c0 correct to three decimal places, making it history's most elegant way to be spectacularly wrong for a very long time.",
+    "filename": "vizzes/024_leibniz-gregory.html",
+    "timestamp": "2026-03-15T07:52:47.564135"
   }
 ]
