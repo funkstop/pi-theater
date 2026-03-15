@@ -40,5 +40,12 @@
     "oneliner": "An infinite alternating series adds and subtracts fractions of the form 4/[n(n+1)(n+2)] starting at n=2 to the base value of 3, converging to \u03c0 through cancellation of errors that shrink with each term.\nFive centuries before calculus had a name in Europe, an Indian mathematician was already doing calculus \u2014 he just called it \"finding \u03c0.\"",
     "filename": "vizzes/006_nilakantha.html",
     "timestamp": "2026-03-15T03:05:33.399066"
+  },
+  {
+    "id": 7,
+    "method": "Zu Chongzhi's 355/113 approximation (China, 480 CE)",
+    "oneliner": "355/113 approximates \u03c0 by taking the simple ratio of two integers chosen to match \u03c0's decimal expansion to six places, making it the best rational approximation of \u03c0 before requiring a denominator larger than 16,604.\nThe mnemonic hiding inside it is almost criminal: write 113355, split it in half, and stack the halves into a fraction \u2014 355/113 \u2014 as if Zu Chongzhi left a cheat code in the digits themselves.",
+    "filename": "vizzes/007_zu.html",
+    "timestamp": "2026-03-15T03:15:57.332618"
   }
 ]
