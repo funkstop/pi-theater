@@ -75,5 +75,12 @@
     "oneliner": "Aryabhata gave the fraction 62832/20000, equivalent to 3.1416, by essentially stating it as a direct approximation without deriving it from a geometric construction, suggesting he may have computed it empirically or inherited a refined value from earlier traditions.\nIt's quietly remarkable that a fifth-century astronomer handed us four correct decimal places of \u03c0 with a fraction that looks almost arbitrary \u2014 yet it's more accurate than anything Europe would manage for another thousand years.",
     "filename": "vizzes/011_aryabhata's.html",
     "timestamp": "2026-03-15T04:20:50.974072"
+  },
+  {
+    "id": 12,
+    "method": "Machin's arctangent formula",
+    "oneliner": "It expresses \u03c0/4 as a combination of arctangent values at simple fractions\u2014specifically \u03c0/4 = 4\u00b7arctan(1/5) \u2212 arctan(1/239)\u2014then rapidly converges by exploiting the Taylor series for arctangent, which converges fastest near zero.\nMachin essentially discovered that the most transcendental number in mathematics is secretly embarrassed by 239, a number so awkward it makes the whole formula work beautifully.",
+    "filename": "vizzes/012_machin's.html",
+    "timestamp": "2026-03-15T04:31:14.887771"
   }
 ]
