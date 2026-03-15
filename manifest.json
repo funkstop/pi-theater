@@ -12,5 +12,12 @@
     "oneliner": "Leibniz proved \u03c0 hides in odd numbers, infinitely patient.",
     "filename": "vizzes/002_leibniz-gregory.html",
     "timestamp": "2026-03-15T00:51:05.757451"
+  },
+  {
+    "id": 3,
+    "method": "Nilakantha series",
+    "oneliner": "Nilakantha kept adding fractions until \u03c0 finally confessed.",
+    "filename": "vizzes/003_nilakantha.html",
+    "timestamp": "2026-03-15T01:01:21.335829"
   }
 ]
